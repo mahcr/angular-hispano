@@ -13,6 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { Angulartics2Module } from 'angulartics2';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirePerformanceModule } from '@angular/fire/performance';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -22,10 +23,12 @@ import { LandingComponent } from './landing/landing.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CodeOfConductComponent } from './code-of-conduct/code-of-conduct.component';
 import { SponsorsComponent } from './sponsors/sponsors.component';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'acerca'},
   {path: 'acerca', component: LandingComponent, children: []},
+  {path: 'auth', component: AuthComponent, children: []},
   {path: 'coc', component: CodeOfConductComponent, children: []},
   {path: '**', component: PageNotFoundComponent, children: []}
 ];
@@ -37,6 +40,7 @@ const routes: Routes = [
     LandingComponent,
     PageNotFoundComponent,
     TopNavComponent,
+    AuthComponent,
     CodeOfConductComponent,
     SponsorsComponent
   ],
@@ -47,6 +51,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {useHash: false, preloadingStrategy: PreloadAllModules }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirePerformanceModule,
+    NgxAuthFirebaseUIModule.forRoot(environment.firebase),
     Angulartics2Module.forRoot(),
     LayoutModule,
     MatToolbarModule,
